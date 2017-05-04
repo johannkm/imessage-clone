@@ -48,7 +48,7 @@
           <f7-nav-left>
             <f7-link icon="icon-bars" open-panel="left"></f7-link>
           </f7-nav-left>
-          <f7-nav-center sliding>RemarkAll</f7-nav-center>
+          <f7-nav-center sliding>Messages</f7-nav-center>
         </f7-navbar>
         <!-- Pages -->
         <f7-pages>
@@ -58,7 +58,7 @@
               <f7-nav-left>
                 <f7-link icon="icon-bars" open-panel="left"></f7-link>
               </f7-nav-left>
-              <f7-nav-center sliding>Remark All</f7-nav-center>
+              <f7-nav-center sliding>Messages</f7-nav-center>
             </f7-navbar>
             <!-- Page Content -->
             <f7-messages>
@@ -103,7 +103,7 @@ var db = firebaseApp.database()
 export default {
     data: function () {
       return {
-        name: '',
+        name: 'anon',
         avatar: '',
         uid: 'none'
       }
