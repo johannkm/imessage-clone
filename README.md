@@ -1,6 +1,7 @@
-# Framework7 Vue + Webpack App Template
+# iMessages Online
+An iOS style online chatroom
 
-A full-featured Framework7 + Vue + Webpack setup with hot-reload & css extraction. Based on [Vue Webpack Boilerplate](https://github.com/vuejs-templates/webpack)
+[Demo](//mesg.surge.sh)
 
 ## Build Setup
 
@@ -15,12 +16,7 @@ npm run dev
 npm run build
 ```
 
-## Project Structure
-
-* `src/assets` - folder with static assets (images)
-* `src/components` - folder with custom `.vue` components
-* `src/css` - put custom app CSS styles here. Don't forget to import them in `main.js`
-* `src/pages` - app `.vue` pages
-* `src/main.js` - main app file where you include/import all required libs and init app
-* `src/routes.js` - app routes
-* `src/app.vue` - main app structure/component
+## Built with
+- Vue
+- Framework7's [Vue Webpack Boilerplate](https://github.com/vuejs-templates/webpack)
+- Firebase
