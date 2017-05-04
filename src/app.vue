@@ -12,10 +12,20 @@
         <f7-pages>
           <f7-page>
             <f7-navbar v-if="$theme.material" title="Left Panel" sliding></f7-navbar>
-            <f7-block inner>
-              <p>Left panel content goes here</p>
-            </f7-block>
-            <f7-block-title>Load page in panel</f7-block-title>
+              <f7-list form>
+                <f7-list-item>
+                  <f7-label>Name</f7-label>
+                  <f7-input type="text" v-model="name"></f7-input>
+                </f7-list-item>
+              </f7-list>
+
+              <p>
+                <f7-grid>
+                  <f7-col><f7-button big fill color="green" @click="signIn">Sign in</f7-button></f7-col>
+                </f7-grid>
+              </p>
+
+            <!-- <f7-block-title>Load page in panel</f7-block-title>
             <f7-list>
               <f7-list-item link="/about/" title="About"></f7-list-item>
               <f7-list-item link="/form/" title="Form"></f7-list-item>
@@ -24,7 +34,7 @@
             <f7-list>
               <f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
               <f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
-            </f7-list>
+            </f7-list> -->
           </f7-page>
         </f7-pages>
       </f7-view>
@@ -67,7 +77,9 @@
                   @click:avatar="onAvatarClick"
                 ></f7-message>
               </f7-messages>
-              <f7-messagebar placeholder="Message" send-link="Send" @submit="onSubmit"></f7-messagebar>          </f7-page>
+              <f7-messagebar placeholder="Message" send-link="Send" @submit="onSubmit"></f7-messagebar>
+
+            </f7-page>
         </f7-pages>
       </f7-view>
     </f7-views>
@@ -91,8 +103,8 @@ var db = firebaseApp.database()
 export default {
     data: function () {
       return {
-        name: 'Vladimir',
-        avatar: 'path/to/avatar-1.jpg',
+        name: '',
+        avatar: '',
         uid: 'none'
       }
     },
@@ -118,7 +130,7 @@ export default {
       onSubmit: function (text, clear) {
         if (text.trim().length === 0) return;
         let newMsg = {
-          // name: this.uid,
+          name: this.name,
           // avatar: this.avatar,
           uid: this.uid,
           text: text,
@@ -137,6 +149,16 @@ export default {
       },
       getType: function(uid){
         return (uid==this.uid?'sent':'received')
+      },
+      signIn: function(){
+        var vm = this
+        firebase.auth().signInWithPopup( new firebase.auth.GoogleAuthProvider() ).then(function(result) {
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.error(errorCode+errorMessage)
+        });
       }
     },
     mounted: function(){
@@ -154,6 +176,9 @@ export default {
           var isAnonymous = user.isAnonymous;
           vm.uid = user.uid;
           console.log(user.uid)
+          if(!isAnonymous){
+            vm.name = user.displayName.split(' ')[0];
+          }
 
         } else {
           console.log('signed out')
@@ -162,3 +187,12 @@ export default {
     }
   }
 </script>
+
+<style>
+  .messagebar~.page-content {
+      padding-bottom: 44px;
+  }
+  .message-sent .message-text {
+    background-color: #787F98;
+  }
+</style>
