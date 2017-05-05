@@ -21,7 +21,8 @@
 
               <p>
                 <f7-grid>
-                  <f7-col><f7-button big fill color="green" @click="signIn">Sign in</f7-button></f7-col>
+                  <f7-col v-if="!auth"><f7-button big fill color="green" @click="signIn">Sign in</f7-button></f7-col>
+                  <f7-label v-else>Signed in</f7-label>
                 </f7-grid>
               </p>
 
@@ -105,7 +106,8 @@ export default {
       return {
         name: 'anon',
         avatar: '',
-        uid: 'none'
+        uid: 'none',
+        auth: false
       }
     },
     firebase: function(){
@@ -178,6 +180,7 @@ export default {
           console.log(user.uid)
           if(!isAnonymous){
             vm.name = user.displayName.split(' ')[0];
+            vm.auth = true
           }
 
         } else {

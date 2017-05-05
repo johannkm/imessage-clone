@@ -113,6 +113,7 @@
       <p>
         <f7-grid>
           <f7-col><f7-button big fill color="green">Send</f7-button></f7-col>
+          <f7-col><f7-button big fill color="red">Delete</f7-button></f7-col>
         </f7-grid>
       </p>
       <p>
