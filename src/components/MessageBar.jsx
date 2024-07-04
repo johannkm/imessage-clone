@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Messagebar as F7Messagebar, Link } from 'framework7-react';
+import { Messagebar, Link } from 'framework7-react';
 
-const MessageBar = ({ onSubmit }) => {
+const MsgInput = ({ onSubmit }) => {
   const [messageText, setMessageText] = useState('');
 
   const handleSubmit = () => {
@@ -17,7 +17,7 @@ const MessageBar = ({ onSubmit }) => {
   };
 
   return (
-    <F7Messagebar
+    <Messagebar
       placeholder="Type your message..."
       value={messageText}
       onInput={(e) => setMessageText(e.target.value)}
@@ -29,8 +29,8 @@ const MessageBar = ({ onSubmit }) => {
         slot="inner-end"
         onClick={handleSubmit}
       />
-    </F7Messagebar>
+    </Messagebar>
   );
 }
 
-export default MessageBar;
+export default MsgInput;
