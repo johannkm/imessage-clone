@@ -1,18 +1,14 @@
 import React from 'react';
-import { F7Page, F7Navbar, F7Block, F7Link } from 'framework7-react'; // Assuming F7 components are imported
+import { Page, Navbar, BlockTitle, Block } from 'framework7-react';
 
-const AboutPage = () => {
-  return (
-    <F7Page>
-      <F7Navbar title="About" backLink="Back" sliding />
-      <F7Block inner>
-        <p>Here is About page!</p>
-        <p>
-          You can go <F7Link href="/">back</F7Link>.
-        </p>
-      </F7Block>
-    </F7Page>
-  );
-};
-
-export default AboutPage;
+export default () => (
+  <Page className="page-about">
+    <Navbar large transparent title="About" titleLarge="About" backLink="Framework7"></Navbar>
+    <BlockTitle medium>iMessage</BlockTitle>
+    <Block strongIos outlineIos>
+      <p>
+        iMessage is a Realtime Chat App created in React, Framework7 & Firebase
+      </p>
+    </Block>
+  </Page>
+);
