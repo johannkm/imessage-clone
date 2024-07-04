@@ -1,7 +1,7 @@
 import React from 'react';
-import { Messages as F7Messages, Message as F7Message } from 'framework7-react';
+import { Messages, Message } from 'framework7-react';
 
-const Messages = ({ messages, getType }) => {
+const Msg = ({ messages, getType }) => {
   const isFirstMessage = (message, index) => {
     const previousMessage = messages[index - 1];
     if (!previousMessage || previousMessage.type !== message.type || previousMessage.name !== message.name)
@@ -24,9 +24,9 @@ const Messages = ({ messages, getType }) => {
   };
 
   return (
-    <F7Messages>
+    <Messages>
       {messages.map((message, index) => (
-        <F7Message
+        <Message
           key={message.key || index}
           type={getType(message.uid)}
           name={message.name}
@@ -37,10 +37,10 @@ const Messages = ({ messages, getType }) => {
         >
           {message.text && <span slot="text">{message.text}</span>}
           {message.avatar && <img slot="avatar" src={message.avatar} alt="Avatar" />}
-        </F7Message>
+        </Message>
       ))}
-    </F7Messages>
+    </Messages>
   );
 };
 
-export default Messages;
+export default Msg;
