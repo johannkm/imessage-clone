@@ -1,17 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import firebase from 'firebase';
-import Navbar from './Navbar';
-import Statusbar from './Statusbar';
-import LeftPanel from './LeftPanel';
-import Messages from './Messages';
-import MessageBar from './MessageBar';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+import { f7 } from 'framework7-react';
+import Navbar from './components/Navbar';
+import LeftPanel from './components/LeftPanel';
+import Messages from './components/Messages';
+import MessageBar from './components/MessageBar';
 
+// Your Firebase configuration object
 const firebaseConfig = {
-  // Your Firebase config here
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.database();
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.database();
 
 const App = () => {
   const [name, setName] = useState('anon');
@@ -21,14 +31,13 @@ const App = () => {
 
   useEffect(() => {
     firebase.auth().signInAnonymously().catch((error) => {
-      console.error(error.code + error.message);
+      console.error(error.code, error.message);
     });
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const isAnonymous = user.isAnonymous;
         setUid(user.uid);
-        console.log(user.uid);
         if (!isAnonymous) {
           setName(user.displayName.split(' ')[0]);
           setAuth(true);
@@ -67,8 +76,8 @@ const App = () => {
     db.ref('/messages').push(newMsg);
   };
 
-  const getType = (uid) => {
-    return uid === uid ? 'sent' : 'received';
+  const getType = (messageUid) => {
+    return messageUid === uid ? 'sent' : 'received';
   };
 
   const signIn = () => {
@@ -76,12 +85,12 @@ const App = () => {
       // Handle successful sign-in
     }).catch((error) => {
       // Handle sign-in error
-      console.error(error.code + error.message);
+      console.error(error.code, error.message);
     });
   };
 
   const handleOpenPanel = () => {
-    // Open left panel logic
+    f7.panel.open('left');
   };
 
   return (
@@ -95,6 +104,6 @@ const App = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;
