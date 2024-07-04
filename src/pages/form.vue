@@ -1,132 +1,152 @@
-<template>
-  <f7-page>
-    <f7-navbar title="Form" back-link="Back" sliding></f7-navbar>
-    <f7-block-title>Form</f7-block-title>
-    <f7-list form>
-      <f7-list-item>
-        <f7-label>Name</f7-label>
-        <f7-input type="text" placeholder="Name"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Password</f7-label>
-        <f7-input type="password" placeholder="Password"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>E-mail</f7-label>
-        <f7-input type="email" placeholder="E-mail"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>URL</f7-label>
-        <f7-input type="url" placeholder="URL"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Phone</f7-label>
-        <f7-input type="tel" placeholder="Phone"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Birth date</f7-label>
-        <f7-input type="date" placeholder="Birth date" value="2014-04-30"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Date time</f7-label>
-        <f7-input type="datetime-local"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Gender</f7-label>
-        <f7-input type="select">
-          <option value="1">Male</option>
-          <option value="1">Female</option>
-        </f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Switch</f7-label>
-        <f7-input type="switch"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Range</f7-label>
-        <f7-input type="range" min="0" max="100" step="1" value="90"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label>Textarea</f7-label>
-        <f7-input type="textarea" placeholder="Textarea"></f7-input>
-      </f7-list-item>
-    </f7-list>
+import React from 'react';
+import {
+  Page,
+  Navbar,
+  BlockTitle,
+  List,
+  ListItem,
+  Label,
+  Input,
+  Button,
+  Block,
+  Buttons,
+  Grid,
+  Col
+} from 'framework7-react';
 
-    <f7-block-title>Form With Floating Labels</f7-block-title>
-    <f7-list form>
-      <f7-list-item>
-        <f7-label floating>Name</f7-label>
-        <f7-input type="text" placeholder="Name"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label floating>Password</f7-label>
-        <f7-input type="password" placeholder="Password"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-label floating>E-mail</f7-label>
-        <f7-input type="email" placeholder="E-mail"></f7-input>
-      </f7-list-item>
-    </f7-list>
+const FormPage = () => {
+  return (
+    <Page>
+      <Navbar title="Form" backLink="Back" sliding />
+      <BlockTitle>Form</BlockTitle>
+      <List form>
+        <ListItem>
+          <Label>Name</Label>
+          <Input type="text" placeholder="Name" />
+        </ListItem>
+        <ListItem>
+          <Label>Password</Label>
+          <Input type="password" placeholder="Password" />
+        </ListItem>
+        <ListItem>
+          <Label>E-mail</Label>
+          <Input type="email" placeholder="E-mail" />
+        </ListItem>
+        <ListItem>
+          <Label>URL</Label>
+          <Input type="url" placeholder="URL" />
+        </ListItem>
+        <ListItem>
+          <Label>Phone</Label>
+          <Input type="tel" placeholder="Phone" />
+        </ListItem>
+        <ListItem>
+          <Label>Birth date</Label>
+          <Input type="date" placeholder="Birth date" value="2014-04-30" />
+        </ListItem>
+        <ListItem>
+          <Label>Date time</Label>
+          <Input type="datetime-local" />
+        </ListItem>
+        <ListItem>
+          <Label>Gender</Label>
+          <Input type="select">
+            <option value="1">Male</option>
+            <option value="2">Female</option>
+          </Input>
+        </ListItem>
+        <ListItem>
+          <Label>Switch</Label>
+          <Input type="switch" />
+        </ListItem>
+        <ListItem>
+          <Label>Range</Label>
+          <Input type="range" min="0" max="100" step="1" value="90" />
+        </ListItem>
+        <ListItem>
+          <Label>Textarea</Label>
+          <Input type="textarea" placeholder="Textarea" />
+        </ListItem>
+      </List>
 
-    <f7-block-title>Form Without Labels</f7-block-title>
-    <f7-list form>
-      <f7-list-item>
-        <f7-input type="text" placeholder="Name"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-input type="password" placeholder="Password"></f7-input>
-      </f7-list-item>
-      <f7-list-item>
-        <f7-input type="email" placeholder="E-mail"></f7-input>
-      </f7-list-item>
-    </f7-list>
+      <BlockTitle>Form With Floating Labels</BlockTitle>
+      <List form>
+        <ListItem>
+          <Label floating>Name</Label>
+          <Input type="text" placeholder="Name" />
+        </ListItem>
+        <ListItem>
+          <Label floating>Password</Label>
+          <Input type="password" placeholder="Password" />
+        </ListItem>
+        <ListItem>
+          <Label floating>E-mail</Label>
+          <Input type="email" placeholder="E-mail" />
+        </ListItem>
+      </List>
 
-    <f7-block-title>Checkboxes</f7-block-title>
-    <f7-list form>
-      <f7-list-item v-for="n in 3" checkbox name="my-checkbox" :value="n" :title="'Checkbox ' + n"></f7-list-item>
-    </f7-list>
+      <BlockTitle>Form Without Labels</BlockTitle>
+      <List form>
+        <ListItem>
+          <Input type="text" placeholder="Name" />
+        </ListItem>
+        <ListItem>
+          <Input type="password" placeholder="Password" />
+        </ListItem>
+        <ListItem>
+          <Input type="email" placeholder="E-mail" />
+        </ListItem>
+      </List>
 
-    <f7-block-title>Radios</f7-block-title>
-    <f7-list form>
-      <f7-list-item v-for="n in 3" radio name="my-radio" :checked="n === 1" :value="n" :title="'Radio ' + n"></f7-list-item>
-    </f7-list>
+      <BlockTitle>Checkboxes</BlockTitle>
+      <List form>
+        {[1, 2, 3].map(n => (
+          <ListItem key={n} checkbox name="my-checkbox" value={n} title={`Checkbox ${n}`} />
+        ))}
+      </List>
 
-    <f7-block-title>Buttons</f7-block-title>
-    <f7-block inner>
-      <p><f7-button>Button</f7-button></p>
-      <p><f7-button round>Button Round</f7-button></p>
-      <p><f7-button fill>Button Fill</f7-button></p>
-      <p>
-        <f7-buttons>
-          <f7-button round active>Button 1</f7-button>
-          <f7-button round>Button 2</f7-button>
-          <f7-button round>Button 3</f7-button>
-        </f7-buttons>
-      </p>
-      <p>
-        <f7-buttons color="orange">
-          <f7-button round big>Button 1</f7-button>
-          <f7-button round big active>Button 2</f7-button>
-          <f7-button round big>Button 3</f7-button>
-        </f7-buttons>
-      </p>
-      <p>
-        <f7-grid>
-          <f7-col><f7-button big fill color="green">Send</f7-button></f7-col>
-          <f7-col><f7-button big fill color="red">Delete</f7-button></f7-col>
-        </f7-grid>
-      </p>
-      <p>
-        <f7-grid>
-          <f7-col><f7-button fill raised color="green">Raised</f7-button></f7-col>
-          <f7-col><f7-button raised color="red">Raised</f7-button></f7-col>
-          <f7-col><f7-button fill raised color="pink">Raised</f7-button></f7-col>
-        </f7-grid>
-      </p>
-    </f7-block>
-  </f7-page>
-</template>
+      <BlockTitle>Radios</BlockTitle>
+      <List form>
+        {[1, 2, 3].map(n => (
+          <ListItem key={n} radio name="my-radio" checked={n === 1} value={n} title={`Radio ${n}`} />
+        ))}
+      </List>
 
-<script>
-export default {}
-</script>
+      <BlockTitle>Buttons</BlockTitle>
+      <Block inner>
+        <p><Button>Button</Button></p>
+        <p><Button round>Button Round</Button></p>
+        <p><Button fill>Button Fill</Button></p>
+        <p>
+          <Buttons>
+            <Button round active>Button 1</Button>
+            <Button round>Button 2</Button>
+            <Button round>Button 3</Button>
+          </Buttons>
+        </p>
+        <p>
+          <Buttons color="orange">
+            <Button round big>Button 1</Button>
+            <Button round big active>Button 2</Button>
+            <Button round big>Button 3</Button>
+          </Buttons>
+        </p>
+        <p>
+          <Grid>
+            <Col><Button big fill color="green">Send</Button></Col>
+            <Col><Button big fill color="red">Delete</Button></Col>
+          </Grid>
+        </p>
+        <p>
+          <Grid>
+            <Col><Button fill raised color="green">Raised</Button></Col>
+            <Col><Button raised color="red">Raised</Button></Col>
+            <Col><Button fill raised color="pink">Raised</Button></Col>
+          </Grid>
+        </p>
+      </Block>
+    </Page>
+  );
+}
+
+export default FormPage;
